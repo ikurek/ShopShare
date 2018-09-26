@@ -7,9 +7,11 @@ class MainContract {
     interface View: BaseContract.View {
         fun showListFragment()
         fun showCreateFragment()
+        fun hideFab()
+        fun showFab()
     }
 
     interface Presenter: BaseContract.Presenter<MainContract.View> {
-        fun onFabClick()
+        fun handleFabClick()
     }
 }
