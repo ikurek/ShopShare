@@ -1,7 +1,6 @@
 package com.ikurek.shopshare.base
 
 import android.app.Application
-import com.ikurek.shopshare.BuildConfig
 import com.ikurek.shopshare.di.component.ApplicationComponent
 import com.ikurek.shopshare.di.component.DaggerApplicationComponent
 import com.ikurek.shopshare.di.module.ApplicationModule
@@ -28,7 +27,8 @@ class BaseApp: Application() {
      */
     fun setup() {
         component = DaggerApplicationComponent.builder()
-                .applicationModule(ApplicationModule(this)).build()
+                .applicationModule(ApplicationModule(this))
+                .build()
         component.inject(this)
     }
 

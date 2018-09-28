@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.ikurek.shopshare.R
 import com.ikurek.shopshare.di.component.DaggerFragmentComponent
 import com.ikurek.shopshare.di.module.FragmentModule
+import com.ikurek.shopshare.model.Product
 import kotlinx.android.synthetic.main.fragment_create.*
 import javax.inject.Inject
 
@@ -43,6 +44,15 @@ class CreateFragment : Fragment(), CreateContract.View {
         fragment_create_quantity.text = quantity
     }
 
+    //FIXME: Add validation, etc.
+    override fun readProduct(): Product {
+        return Product(
+                fragment_create_quantity.text.toString().toLong(),
+                fragment_create_product_text_input.text.toString(),
+                ""
+        )
+    }
+
     private fun injectDependency() {
         val createComponent = DaggerFragmentComponent.builder()
                 .fragmentModule(FragmentModule())
@@ -54,6 +64,7 @@ class CreateFragment : Fragment(), CreateContract.View {
     private fun bindUiHandlers() {
         fragment_create_plus_button.setOnClickListener { presenter.handlePlusButton() }
         fragment_create_minus_button.setOnClickListener { presenter.handleMinusButton() }
+        fragment_create_save_button.setOnClickListener { presenter.handleSaveButton() }
     }
 
 }
